@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio de Joseph</title>
+  <!-- Importation des polices -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Réinitialisation et styles de base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #c0c0c0;
+      min-height: 100vh;
+      text-transform: uppercase;
+    }
+    
+    /* --------------------------
+       Barre de navigation haut (Accueil)
+       -------------------------- */
+    header {
+      background: black;
+      height: 80px;
+      padding: 0 50px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      box-sizing: border-box;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      transition: opacity 0.5s ease;
+    }
+    header.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    .nav-left h1 {
+      font-size: 2em;
+      font-weight: bold;
+      color: white;
+    }
+    .nav-left h1 .blue-text {
+      color: #0ef;
+      margin-left: 5px;
+    }
+    .nav-right ul {
+      display: flex;
+      list-style: none;
+    }
+    .nav-right ul li {
+      margin: 0 25px;
+    }
+    .nav-right ul li a {
+      text-decoration: none;
+      color: #f7f1f1;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    .nav-right ul li.active a,
+    .nav-right ul li a:hover {
+      color: #0ef;
+    }
+    
+    /* --------------------------
+       Section Accueil
+       -------------------------- */
+    .home-section {
+      padding: 120px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 80px);
+      background-color: transparent;
+    }
+    .home-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      width: 100%;
+      gap: 20px;
+    }
+    .home-content .text {
+      flex: 1;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .home-content .text .intro {
+      font-size: 2.2em;
+      margin-bottom: 20px;
+      width: 80%;
+      line-height: 1.4;
+      font-weight: 700;
+    }
+    .home-content .text .highligth {
+      color: #0ef;
+      font-weight: bold;
+    }
+    .home-content .text button {
+      padding: 12px 30px;
+      background: #0ef;
+      border: none;
+      border-radius: 6px;
+      box-shadow: 0 0 10px #0ef;
+      font-size: 16px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 20px;
+    }
+    .home-content .text button:hover {
+      box-shadow: none;
+    }
+    .home-content .image {
+      flex: 1;
+      max-width: 400px;
+      margin-left: auto;
+    }
+    .home-content .image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 20px;
+      object-fit: cover;
+      max-height: 400px;
+    }
+    @media (max-width: 768px) {
+      .home-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .home-content .image {
+        width: 100%;
+        max-width: 300px;
+        margin-top: 20px;
+      }
+      .home-content .text {
+        align-items: center;
+        text-align: center;
+      }
+      .home-content .text .intro {
+        width: 100%;
+      }
+      .home-content .text button {
+        margin: 20px auto;
+      }
+    }
+    
+    /* --------------------------
+       Section À propos
+       -------------------------- */
+    .about-section {
+      padding: 40px 20px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 90vh;
+    }
+    .about-section h1 {
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      text-align: center;
+      width: 100%;
+      color: #0ef;
+    }
+    .about-container {
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 20px;
+    }
+    .about-text {
+      flex: 1;
+      font-size: 1.2em;
+      line-height: 1.6;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+    }
+    .about-text p {
+      margin-bottom: 20px;
+    }
+    .about-text strong {
+      color: #0ef;
+    }
+    .btn-cv {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #0ef;
+      border: none;
+      border-radius: 6px;
+      box-shadow: 0 0 10px #0ef;
+      text-decoration: none;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn-cv:hover {
+      box-shadow: none;
+    }
+    .about-photo {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      margin-left: auto;
+    }
+    .about-photo img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #0ef;
+    }
+    @media (max-width: 768px) {
+      .about-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .about-photo {
+        margin-top: 20px;
+      }
+    }
+    
+    /* --------------------------
+       Section Compétences
+       -------------------------- */
+    .skill {
+      width: 800px;
+      margin: 60px auto;
+      padding: 20px;
+      text-transform: uppercase;
+      background: #c0c0c0;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+    .skill h1 {
+      text-align: center;
+      color: black;
+      margin: 30px 0;
+    }
+    .skill h2 {
+      color: black;
+      text-align: center;
+      margin: 20px 0;
+      font-size: 1.5em;
+    }
+    .skills-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .soft-skills, .hard-skills {
+      flex: 1;
+    }
+    .soft-skills li,
+    .hard-skills li {
+      background: rgba(255,255,255,0.1);
+      border-radius: 5px;
+      text-align: center;
+      margin: 10px 0;
+      padding: 10px;
+    }
+    /* Barres de progression */
+    .bar {
+      background: #353b48;
+      display: block;
+      height: 20px;
+      border: 1px solid rgba(0,0,0,0.3);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 5px;
+    }
+    .bar span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(135deg, rgb(66,227,255) 0%, rgb(62,155,241) 100%);
+      width: 0;
+      transition: width 2s ease-out;
+    }
+    
+    /* --------------------------
+       Section Projets
+       -------------------------- */
+    .mes-projets {
+      padding: 2rem 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .mes-projets h2 {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      font-size: 2.5em;
+      color: #0ef;
+    }
+    .projets-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .projet-card {
+      background: #ffffffa9;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100%;
+    }
+    .projet-card h3 {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: #2d3436;
+    }
+    .tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .tags span {
+      background: #f8f9fa;
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      color: #6c757d;
+      border: 1px solid #dee2e6;
+    }
+    .voir-button {
+      margin-top: auto;
+      padding: 12px 30px;
+      background: #0ef;
+      border: none;
+      border-radius: 6px;
+      box-shadow: 0 0 10px #0ef;
+      font-size: 16px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      display: block;
+      margin: 20px auto 40px;
+    }
+    .voir-button:hover {
+      box-shadow: none;
+    }
+    
+    /* --------------------------
+       Section Contact
+       -------------------------- */
+    /* On modifie le body pour la section Contact */
+    body.contact-active {
+      background: #333;
+    }
+    .contact {
+      color: #ededed;
+      text-align: center;
+      margin-bottom: 40px;
+      padding-top: 120px;
+    }
+    .contact h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+    .contact h2 {
+      font-size: 30px;
+      margin-bottom: 30px;
+    }
+    .contact form {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .input-row {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    .input-field {
+      flex: 1;
+    }
+    .textarea-field {
+      margin: 15px 0;
+    }
+    .item {
+      width: 100%;
+      padding: 18px;
+      background: white;
+      border: 2px solid #0ef;
+      outline: none;
+      border-radius: 6px;
+      font-size: 16px;
+      color: #333;
+      transition: border-color 0.3s;
+    }
+    .item.error {
+      border-color: red !important;
+    }
+    .item::placeholder {
+      color: rgba(0,0,0,0.3);
+    }
+    button {
+      padding: 12px 30px;
+      background: #0ef;
+      border: none;
+      border-radius: 6px;
+      box-shadow: 0 0 10px #0ef;
+      font-size: 16px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      display: block;
+      margin: 20px auto 40px;
+    }
+    button:hover {
+      box-shadow: none;
+    }
+    /* Barre de navigation en bas (Contact uniquement) */
+    .nav-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #f8f9fa;
+      border-top: 1px solid #dee2e6;
+      padding: 15px 20px;
+      height: 60px;
+    }
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .name {
+      color: #0ef;
+      font-weight: 600;
+    }
+    @media (max-width: 768px) {
+      body.contact-active {
+        padding-bottom: 120px;
+      }
+      .nav-bar {
+        height: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header (Barre de navigation en haut, visible sur Accueil) -->
+  <header id="headerNav">
+    <div class="nav-container">
+      <div class="nav-left">
+        <h1>DITE <span class="blue-text">JOSEPH</span></h1>
+      </div>
+      <nav class="nav-right">
+        <ul>
+          <li class="active"><a href="#accueil">Accueil</a></li>
+          <li><a href="#apropos">À propos</a></li>
+          <li><a href="#competences">Compétences</a></li>
+          <li><a href="#projets">Projets</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Section Accueil -->
+  <section id="accueil" class="home-section">
+    <div class="home-content">
+      <div class="text">
+        <p class="intro">
+          Je suis <span class="highligth">Joseph</span>, Développeur en devenir, passionné par le web et le design !
+        </p>
+        <button onclick="document.querySelector('#projets').scrollIntoView({behavior: 'smooth'})">
+          Voir mes projets
+        </button>
+      </div>
+      <div class="image">
+        <img src="images/hj.jpg" alt="Illustration accueil">
+      </div>
+    </div>
+  </section>
+  
+  <!-- Section À propos -->
+  <section id="apropos" class="about-section">
+    <h1 class="page-title">À propos</h1>
+    <div class="about-container">
+      <div class="about-text">
+        <p>
+          Je m'appelle <strong>DITE</strong>, passionné par la création de sites web modernes et interactifs.<br><br>
+          Je suis actuellement étudiant en <strong>développement web</strong>, et je cherche à améliorer mes compétences en JavaScript, HTML et CSS.<br><br>
+          J'adore transformer mes idées en projets concrets et expérimenter avec les nouvelles technologies.
+        </p>
+        <a href="cv.pdf" download class="btn-cv">Télécharger mon CV</a>
+      </div>
+      <div class="about-photo">
+        <img src="images/jl.jpg" alt="Photo de DITE">
+      </div>
+    </div>
+  </section>
+  
+  <!-- Section Compétences -->
+  <section id="competences" class="skill">
+    <h1>My Skills</h1>
+    <div class="skills-container">
+      <div class="soft-skills">
+        <h2>Soft Skills</h2>
+        <ul>
+          <li>
+            <h3>Gestion de projet</h3>
+            <span class="bar"><span class="gestion" data-percentage="90%"></span></span>
+          </li>
+          <li>
+            <h3>Résolution de problème</h3>
+            <span class="bar"><span class="resolution" data-percentage="70%"></span></span>
+          </li>
+          <li>
+            <h3>Adaptabilité</h3>
+            <span class="bar"><span class="adapta" data-percentage="40%"></span></span>
+          </li>
+        </ul>
+      </div>
+      <div class="hard-skills">
+        <h2>Hard Skills</h2>
+        <ul>
+          <li>
+            <h3>HTML</h3>
+            <span class="bar"><span class="html" data-percentage="90%"></span></span>
+          </li>
+          <li>
+            <h3>CSS</h3>
+            <span class="bar"><span class="css" data-percentage="70%"></span></span>
+          </li>
+          <li>
+            <h3>JavaScript</h3>
+            <span class="bar"><span class="js" data-percentage="40%"></span></span>
+          </li>
+          <li>
+            <h3>Python</h3>
+            <span class="bar"><span class="py" data-percentage="50%"></span></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Section Projets -->
+  <section id="projets" class="mes-projets">
+    <h2>Mes Projets</h2>
+    <div class="projets-container">
+      <div class="projet-card">
+        <h3>Un mini-jeu interactif en JavaScript qui utilise des événements DOM</h3>
+        <div class="tags">
+          <span>#html</span>
+          <span>#css</span>
+          <span>#js</span>
+        </div>
+        <button class="voir-button">Voir</button>
+      </div>
+      <div class="projet-card">
+        <h3>Un mini-jeu interactif en JavaScript qui utilise des événements DOM</h3>
+        <div class="tags">
+          <span>#html</span>
+          <span>#css</span>
+          <span>#js</span>
+        </div>
+        <button class="voir-button">Voir</button>
+      </div>
+      <div class="projet-card">
+        <h3>Un mini-jeu interactif en JavaScript qui utilise des événements DOM</h3>
+        <div class="tags">
+          <span>#html</span>
+          <span>#css</span>
+          <span>#js</span>
+        </div>
+        <button class="voir-button">Voir</button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Section Contact -->
+  <section id="contact">
+    <div class="contact">
+      <h1>
+        Vous avez <span class="name"><span class="typewriter">un projet en tête ?</span></span>
+      </h1>
+      <h2>
+        N'hésitez pas à <span class="name"><span class="typewriter">me contacter</span></span>
+      </h2>
+      <form action="#">
+        <div class="input-row">
+          <div class="input-field">
+            <input type="text" placeholder="Votre Prénom" class="item" autocomplete="off">
+          </div>
+          <div class="input-field">
+            <input type="text" placeholder="Votre Nom" class="item" autocomplete="off">
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="input-field">
+            <input type="text" placeholder="Votre Sujet" class="item" autocomplete="off">
+          </div>
+          <div class="input-field">
+            <input type="email" placeholder="Adresse Email" class="item" autocomplete="off">
+          </div>
+        </div>
+        <div class="textarea-field">
+          <textarea cols="30" rows="10" placeholder="Entrez Votre Message" class="item"></textarea>
+        </div>
+        <button type="submit">Envoyer</button>
+      </form>
+    </div>
+    <!-- Barre de navigation en bas, présente uniquement dans la section Contact -->
+    <nav class="nav-bar">
+      <div class="nav-content">
+        <span>Design by <span class="name">Joseph</span> with HTML CSS JS</span>
+        <span>Tous droits réservés - 2025</span>
+      </div>
+    </nav>
+  </section>
+  
+  <!-- --------------------------
+       Scripts JS
+       -------------------------- -->
+  <script>
+    /* --- Réactivation des animations des compétences --- */
+    const competencesSection = document.querySelector('#competences');
+    const progressBars = competencesSection.querySelectorAll('.bar span');
+    
+    const animateBars = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          progressBars.forEach(bar => {
+            bar.style.width = bar.getAttribute('data-percentage');
+          });
+          observer.unobserve(competencesSection);
+        }
+      });
+    };
+    
+    const observerOptions = {
+      threshold: 0.5
+    };
+    const observer = new IntersectionObserver(animateBars, observerOptions);
+    observer.observe(competencesSection);
+    
+    /* --- Gestion de l'affichage des barres de navigation ---
+         La barre de navigation en haut (header) doit être visible sur la page d'accueil,
+         et disparaître quand on atteint la section Contact.  */
+    const headerNav = document.getElementById('headerNav');
+    const contactSection = document.getElementById('contact');
+    
+    const toggleNavBars = () => {
+      const contactRect = contactSection.getBoundingClientRect();
+      // Si le haut de la section Contact est proche du haut de la fenêtre (ex. 100px ou moins)
+      if (contactRect.top <= 100) {
+        headerNav.classList.add('hidden');
+        document.body.classList.add('contact-active');
+      } else {
+        headerNav.classList.remove('hidden');
+        document.body.classList.remove('contact-active');
+      }
+    };
+    
+    window.addEventListener('scroll', toggleNavBars);
+    
+    /* --- Validation du formulaire (section Contact) --- */
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      let isValid = true;
+      const inputs = document.querySelectorAll('.item');
+      inputs.forEach(input => {
+        const value = input.value.trim();
+        let isFieldValid = true;
+        if (value === '') {
+          isFieldValid = false;
+        } else if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          isFieldValid = false;
+        }
+        if (!isFieldValid) {
+          input.classList.add('error');
+          isValid = false;
+        } else {
+          input.classList.remove('error');
+        }
+      });
+      if (isValid) {
+        alert('Message envoyé avec succès !');
+        this.reset();
+      }
+    });
+    
+    /* --- Effet "typewriter" pour les textes de la section Contact --- */
+    document.addEventListener("DOMContentLoaded", function(){
+      function typeWriter(element, speed) {
+        const fullText = element.innerHTML;
+        element.innerHTML = "";
+        let i = 0;
+        function type() {
+          if (i < fullText.length) {
+            element.innerHTML += fullText.charAt(i);
+            i++;
+            setTimeout(type, speed);
+          }
+        }
+        type();
+      }
+      const typewriters = document.querySelectorAll('.typewriter');
+      typewriters.forEach((el, index) => {
+        setTimeout(() => {
+          typeWriter(el, 80);
+        }, index * 1500);
+      });
+    });
+  </script>
+</body>
+</html>
